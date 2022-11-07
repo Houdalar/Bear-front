@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="TextAppearance.App.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">rubik</item>
         <item name="android:fontFamily">rubik</item>
@@ -22,4 +23,13 @@
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">4dp</item>
     </style>
+
+    <style name="Theme.Babytrack.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Babytrack.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Babytrack.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
