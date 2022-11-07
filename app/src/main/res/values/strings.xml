@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">baby-track</string>
-    <string name="Forgot_your_password" ><u>Forgot your password?</u></string>
+    <string name="Forgot_your_password"><u>Forgot your password?</u></string>
 
 
 </resources>
