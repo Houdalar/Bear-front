@@ -153,8 +153,10 @@
 
     <Button
         android:id="@+id/OkBtn"
-        android:layout_width="218dp"
-        android:layout_height="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="70dp"
         android:background="@drawable/login_button"
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
