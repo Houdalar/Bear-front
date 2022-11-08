@@ -10,11 +10,11 @@ import tn.esprit.baby_track.models.User
 interface ApiInterface {
 
     @POST("login")
-    fun seConnecter(@Query("log") login: String, @Query("pwd") password: String): Call<User>
+    fun seConnecter(@Query("email") login: String, @Query("password") password: String): Call<User>
 
     companion object {
 
-        var BASE_URL = "http://192.168.1.22:5000/"
+        var BASE_URL = "http://192.168.1.16:27017/"
 
         fun create() : ApiInterface {
 

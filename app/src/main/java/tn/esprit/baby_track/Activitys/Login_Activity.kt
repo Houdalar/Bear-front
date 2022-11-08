@@ -5,10 +5,17 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import android.widget.EditText
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import tn.esprit.baby_track.R
+import tn.esprit.baby_track.models.User
+import tn.esprit.baby_track.utils.ApiInterface
 
 const val PREF_NAME = "LOGIN_PREF_Bear"
 const val IS_REMEMBRED = "IS_REMEMBRED"
@@ -52,12 +59,49 @@ class Login_Activity : AppCompatActivity() {
             clickLogin()
         }
 
+        loginButton.setOnClickListener()
+        {
+            clickLogin()
+        }
+
     }
 
-    private fun clickLogin()
-    {
-        if(validate()){
+    private fun clickLogin() {
+        if (validate()) {
+            val apiInterface = ApiInterface.create()
 
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+
+            apiInterface.seConnecter(email.text.toString(), password.text.toString())
+                .enqueue(object : Callback<User> {
+
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+
+                        val user = response.body()
+
+                        if (user != null) {
+                            Toast.makeText(this@Login_Activity, "Login Success", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(this@Login_Activity, "User not found", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Toast.makeText(this@Login_Activity, "Connexion error!", Toast.LENGTH_SHORT)
+                            .show()
+
+
+                        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    }
+
+                })
 
             val mail = email!!.text.toString()
             val pswd = password!!.text.toString()
