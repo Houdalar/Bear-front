@@ -3,6 +3,7 @@ package tn.esprit.baby_track.utils
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
 import tn.esprit.baby_track.models.User
@@ -10,7 +11,7 @@ import tn.esprit.baby_track.models.User
 interface ApiInterface {
 
     @POST("login")
-    fun seConnecter(@Query("email") login: String, @Query("password") password: String): Call<User>
+    fun seConnecter(@Body email: String, password: String): Call<User>
 
     companion object {
 

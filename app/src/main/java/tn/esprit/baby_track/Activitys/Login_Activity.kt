@@ -69,6 +69,8 @@ class Login_Activity : AppCompatActivity() {
     private fun clickLogin() {
         if (validate()) {
             val apiInterface = ApiInterface.create()
+            val intent = Intent(this,Home::class.java)
+
 
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -80,12 +82,13 @@ class Login_Activity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<User>, response: Response<User>) {
 
-                        val user = response.body()
 
-                        if (user != null) {
-                            Toast.makeText(this@Login_Activity, "Login Success", Toast.LENGTH_SHORT)
-                                .show()
-                        } else {
+                        if (response.code()==200 )
+                        {
+                            Toast.makeText(this@Login_Activity, "Login Success", Toast.LENGTH_SHORT).show()
+                            //startActivity(intent)
+                        } else
+                        {
                             Toast.makeText(this@Login_Activity, "User not found", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -103,10 +106,6 @@ class Login_Activity : AppCompatActivity() {
 
                 })
 
-            val mail = email!!.text.toString()
-            val pswd = password!!.text.toString()
-            val intent = Intent(this,Home::class.java)
-            startActivity(intent)
         }
     }
 
